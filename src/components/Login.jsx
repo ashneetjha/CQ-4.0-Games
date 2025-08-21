@@ -1,20 +1,99 @@
-import React from "react";
-import "./Login.css"; // separate CSS file
+// src/components/Login.jsx
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
+import './login.css';
 
-const Login = () => {
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleAuth = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage('');
+    setError('');
+
+    try {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email, password,
+      });
+
+      if (signInError) {
+        if (
+          signInError.message &&
+          signInError.message.toLowerCase().includes('invalid login credentials')
+        ) {
+          const { data: signUpData, error: signUpError } =
+            await supabase.auth.signUp({ email, password });
+
+          if (signUpError) throw signUpError;
+
+          if (signUpData.session) {
+            setMessage('Account created. You are logged in!');
+          } else {
+            setMessage('Account created. Please confirm your email to log in.');
+            setLoading(false);
+            return;
+          }
+        } else {
+          throw signInError;
+        }
+      } else {
+        setMessage('Logged in!');
+      }
+
+      navigate('src/tasks/Task1/Task1');
+    } catch (err) {
+      setError(err.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
+    // 🔥 YEH DO LINES design ke liye zaroori hain:
     <div className="round2-container">
-      {/* Background image */}
-      <img src="/dg.png" alt="Round 2" className="round2-image" />
+      <img className="round2-image" src="/login-section.png" alt="bg" />
 
-      {/* Form positioned over image */}
-      <div className="login-form">
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button>Login</button>
+      {/* Right side login box */}
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleAuth}>
+          <h2>Login / Sign up</h2>
+
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@example.com"
+            required
+          />
+
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="At least 6 characters"
+            required
+          />
+
+          <button type="submit" disabled={loading}>
+            {loading ? 'Please wait...' : 'Continue'}
+          </button>
+
+          {message && <p className="success-message">{message}</p>}
+          {error && <p className="error-message">{error}</p>}
+        </form>
       </div>
     </div>
   );
-};
-
-export default Login;
+}
