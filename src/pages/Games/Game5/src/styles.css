@@ -1,0 +1,167 @@
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+img { user-select: none; -webkit-user-drag: none; }
+
+/* ---------- Page background / layout ---------- */
+.waterjug-wrap {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("/Background.png"); /* served from /public */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.waterjug-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25);
+  pointer-events: none;
+}
+
+.waterjug-heading {
+  position: absolute;
+  z-index: 20;
+  top: clamp(8px, 2vw, 24px);
+  left: clamp(8px, 2vw, 24px);
+  width: clamp(160px, 15vw, 280px);
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
+
+.waterjug-center {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: clamp(12px, 3vw, 40px);
+}
+
+/* ---------- Bigger newspaper (one more notch up) ---------- */
+.waterjug-paper {
+  width: min(99vw, 1600px);
+  height: auto;
+  max-height: calc(100vh - clamp(36px, 7vh, 96px));
+  object-fit: contain;
+}
+
+@media (min-width: 1024px) {
+  .waterjug-paper {
+    width: min(96vw, 1800px);
+  }
+}
+
+/* ---------- Image-framed timer (clean) ---------- */
+.timer-wrap {
+  position: absolute;
+  top: clamp(12px, 2vw, 24px);
+  right: clamp(12px, 2vw, 24px);
+  z-index: 40;
+}
+
+.timer-frame {
+  position: relative;
+  width: clamp(240px, 22vw, 340px);
+}
+
+.timer-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* blackout patch to hide digits baked into the PNG */
+.timer-eraser {
+  --erase-right: 10.5%;
+  --erase-width: 50%;
+  --erase-height: 46%;
+
+  position: absolute;
+  top: 50%;
+  right: var(--erase-right);
+  transform: translateY(-50%);
+  width: var(--erase-width);
+  height: var(--erase-height);
+  border-radius: 12px;
+  background: #0b0b0b;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* live countdown digits */
+.timer-digits {
+  --digits-right: 15%;
+  position: absolute;
+  top: 50%;
+  right: var(--digits-right);
+  transform: translateY(-50%);
+  z-index: 2;
+  font-family: 'Montserrat', sans-serif;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: clamp(18px, 2.3vw, 24px);
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0,0,0,.75);
+  pointer-events: none;
+}
+
+/* ---------- Newspaper overlay buttons (refined & kept inside) ---------- */
+.paper-wrap { position: relative; display: inline-block; }
+
+/* Base placement (shifted a bit further left) */
+.paper-buttons {
+  --btns-top: 51.0%;
+  --btns-left: 71.8%;   /* was 73.0% */
+
+  position: absolute;
+  top: var(--btns-top);
+  left: var(--btns-left);
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1vw, 16px);
+  z-index: 15;
+}
+
+.paper-buttons .btn-image {
+  display: block;
+  width: clamp(100px, 9.5vw, 140px);
+  height: auto;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,.35));
+}
+
+/* 1366×768-ish: compact and further inside */
+@media (max-width: 1440px) {
+  .paper-buttons { --btns-top: 52.0%; --btns-left: 70.5%; } /* was 71.5% */
+  .paper-buttons .btn-image { width: clamp(96px, 10.5vw, 130px); }
+}
+
+/* 1920×1080+: symmetry on wider paper */
+@media (min-width: 1680px) {
+  .paper-buttons { --btns-top: 50.5%; --btns-left: 72.8%; } /* was 74.0% */
+  .paper-buttons .btn-image { width: clamp(104px, 9.2vw, 148px); }
+}
+/* === Make START (the first button) slightly larger === */
+.paper-buttons a:first-child .btn-image {
+  width: clamp(110px, 10.8vw, 152px);  /* ~+8% vs the base 100px/9.5vw/140px */
+}
+
+/* 1366×768-ish */
+@media (max-width: 1440px) {
+  .paper-buttons a:first-child .btn-image {
+    width: clamp(104px, 11.6vw, 138px);  /* a touch bigger than the base at this size */
+  }
+}
+
+/* 1920×1080+ */
+@media (min-width: 1680px) {
+  .paper-buttons a:first-child .btn-image {
+    width: clamp(114px, 10.2vw, 160px);  /* a bit larger on big screens */
+  }
+}

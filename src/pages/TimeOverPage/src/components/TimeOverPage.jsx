@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+//import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from "react";
 
 import mapImg from "../assets/Background.png";

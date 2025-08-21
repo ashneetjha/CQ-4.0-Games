@@ -6,7 +6,6 @@ const Congratulations = ({ children }) => {
 
   useEffect(() => {
     const handleTimer = setTimeout(() => setHandlesOpen(true), 500);
-    // Show confetti after handles finish moving (match duration)
     const confettiTimer = setTimeout(() => setShowConfetti(true), 1500);
     return () => {
       clearTimeout(handleTimer);
@@ -18,22 +17,19 @@ const Congratulations = ({ children }) => {
     <div
       className="fixed inset-0 w-screen h-screen flex items-center justify-center m-0 p-0"
       style={{
-        backgroundImage: "url('/assets/bg.png')",
+        backgroundImage: "url('/Background.png')", // 👈 from your screenshot
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Confetti fireworks animation */}
+      {/* Confetti */}
       <div className="fixed inset-0 z-10 pointer-events-none flex items-center justify-center">
         <img
-          src="/assets/confetti.png"
+          src="/confetti.png"
           alt="Confetti"
           className={`absolute left-1/2 top-1/2 w-full h-full object-cover transition-all duration-700
-            ${showConfetti
-              ? "opacity-100 scale-100 animate-firework"
-              : "opacity-0 scale-0"
-            }`}
+            ${showConfetti ? "opacity-100 scale-100 animate-firework" : "opacity-0 scale-0"}`}
           style={{
             zIndex: 10,
             transform: "translate(-50%, -50%)",
@@ -41,59 +37,62 @@ const Congratulations = ({ children }) => {
           }}
         />
       </div>
+
+      {/* Campus Quest heading */}
       <img
-        src="/assets/CampusQuesttext.png"
+        src="/Main CQ heading.png"
         alt="Campus Quest"
         className="absolute top-16 left-1/2 -translate-x-1/2 z-20 w-[300px] max-w-[80vw]"
       />
+
       <div className="relative flex items-center justify-center mt-30 w-[1240px] h-[2000px]">
         {/* Left Handle */}
         <img
-          src="/assets/left_handle.png"
+          src="/left_handle.png"
           alt="Left Handle"
-          className={`absolute left-1/2 z-30 w-16 h-[500px] mt-190 transition-transform duration-1000 ${handlesOpen ? "-translate-x-[700px]" : "-translate-x-1/2"
-            }`}
+          className={`absolute left-1/2 z-30 w-16 h-[500px] mt-190 transition-transform duration-1000 ${
+            handlesOpen ? "-translate-x-[700px]" : "-translate-x-1/2"
+          }`}
           style={{ top: 0 }}
         />
         {/* Right Handle */}
         <img
-          src="/assets/right_handle.png"
+          src="/right_handle.png"
           alt="Right Handle"
-          className={`absolute left-1/2 z-30 w-16 h-[500px] mt-190 transition-transform duration-1000 ${handlesOpen ? "translate-x-[620px]" : "translate-x-1/2"
-            }`}
+          className={`absolute left-1/2 z-30 w-16 h-[500px] mt-190 transition-transform duration-1000 ${
+            handlesOpen ? "translate-x-[620px]" : "translate-x-1/2"
+          }`}
           style={{ top: 0 }}
         />
-        {/* Blurbg background behind Congratulations text */}
+
+        {/* Background panel */}
         <div
           className="absolute left-1/2 top-0 -translate-x-1/2 z-10 w-[1200px] h-[200px] mt-150 flex items-center justify-center rounded-3xl overflow-hidden"
           style={{
-            backgroundImage: "url('/assets/ContentBackground.png')",
+            backgroundImage: "url('/ContentBackground.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         />
-        {/* Animated reveal of Congratulations text */}
+
+        {/* Reveal animation */}
         <div
           className={`relative z-20 w-[98%] max-w-[1200px] h-auto flex items-center justify-center rounded-3xl transition-[clip-path] duration-1000`}
           style={{
-            backgroundImage: "url('/assets/blurbg.png')",
+            backgroundImage: "url('/blurbg.png')", // 👈 directly in public
             backgroundSize: "cover",
             backgroundPosition: "center",
-            clipPath: handlesOpen
-              ? "inset(0% 0% 0% 0%)"
-              : "inset(0% 50% 0% 50%)",
+            clipPath: handlesOpen ? "inset(0% 0% 0% 0%)" : "inset(0% 50% 0% 50%)",
           }}
         >
-          {/* Background blur effect */}
           <img
-            src="/assets/blurbg.png"
+            src="/blurbg.png"
             alt="Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          {/* Congratulations text overlay */}
           <img
-            src="/assets/CongoBG.png"
-            alt="Congratulations_text"
+            src="/CongoBG.png"
+            alt="Congratulations"
             className="relative z-10 w-500 h-100"
           />
         </div>

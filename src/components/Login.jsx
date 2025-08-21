@@ -48,7 +48,7 @@ export default function Login() {
         setMessage('Logged in!');
       }
 
-      navigate('src/tasks/Task1/Task1');
+  navigate('/task1');
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {
