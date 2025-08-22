@@ -39,10 +39,10 @@ export default function CryptArithmeticPage() {
             alt="CryptArithmetic — Instructions"
           />
           <div className="paper-buttons">
-            <Link to="/start" aria-label="Start">
+            <Link to="https://crypt-three-chi.vercel.app/" aria-label="Start">
               <img className="btn-image" src="src\pages\Games\Game5\public\start.png" alt="" />
             </Link>
-            <Link to="/skip" aria-label="Skip">
+            <Link to="/game2" aria-label="Skip">
               <img className="btn-image" src="src\pages\Games\Game5\public\skip.png" alt="" />
             </Link>
           </div>

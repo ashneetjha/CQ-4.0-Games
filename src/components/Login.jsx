@@ -5,7 +5,7 @@ import { supabase } from '../supabaseClient';
 import './login.css';
 
 export default function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setusername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -21,7 +21,7 @@ export default function Login() {
 
     try {
       const { error: signInError } = await supabase.auth.signInWithPassword({
-        email, password,
+        username, password,
       });
 
       if (signInError) {
@@ -30,14 +30,14 @@ export default function Login() {
           signInError.message.toLowerCase().includes('invalid login credentials')
         ) {
           const { data: signUpData, error: signUpError } =
-            await supabase.auth.signUp({ email, password });
+            await supabase.auth.signUp({ username, password });
 
           if (signUpError) throw signUpError;
 
           if (signUpData.session) {
             setMessage('Account created. You are logged in!');
           } else {
-            setMessage('Account created. Please confirm your email to log in.');
+            setMessage('Account created. Please confirm your username to log in.');
             setLoading(false);
             return;
           }
@@ -66,13 +66,13 @@ export default function Login() {
         <form className="login-form" onSubmit={handleAuth}>
           <h2>Login / Sign up</h2>
 
-          <label htmlFor="email">Email</label>
+          <label htmlFor="username">Username</label>
           <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@example.com"
+            id="username"
+            type="username"
+            value={username}
+            onChange={(e) => setusername(e.target.value)}
+            placeholder="Username"
             required
           />
 

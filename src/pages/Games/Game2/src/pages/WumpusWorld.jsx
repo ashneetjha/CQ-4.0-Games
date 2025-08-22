@@ -46,10 +46,10 @@ export default function WaterJug() {
           />
 
           <div className="paper-buttons">
-            <Link to="/start" aria-label="Start">
+            <Link to="https://wumpus-seven.vercel.app/" aria-label="Start">
               <img className="btn-image" src="src\pages\Games\Game2\public\start.png" alt="" />
             </Link>
-            <Link to="/skip" aria-label="Skip">
+            <Link to="/game3" aria-label="Skip">
               <img className="btn-image" src="src\pages\Games\Game2\public\skip.png" alt="" />
             </Link>
           </div>

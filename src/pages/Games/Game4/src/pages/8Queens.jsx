@@ -47,7 +47,7 @@ export default function EightQueensPage() {
             <Link to="https://cq8queens.vercel.app/" aria-label="Start">
               <img className="btn-image" src="src\pages\Games\Game4\public\start.png" alt="" />
             </Link>
-            <Link to="/skip" aria-label="Skip">
+            <Link to="https://game-page-chi.vercel.app/" aria-label="Skip">
               <img className="btn-image" src="src\pages\Games\Game4\public\skip.png" alt="" />
             </Link>
           </div>

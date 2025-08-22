@@ -7,7 +7,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<WaterJug />} />
-      <Route path="/start" element={<Start />} />
+      <Route path="https://crypt-three-chi.vercel.app/" element={<Start />} />
       <Route path="/skip" element={<Skip />} />
       {/* fallback for unknown routes */}
       <Route path="*" element={<Navigate to="/" replace />} />

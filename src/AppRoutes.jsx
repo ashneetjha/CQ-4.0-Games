@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Login from './components/Login';
 import Task1 from './tasks/Task1/Task1';
+
 import Game2 from './pages/Games/Game2/src/App';
 import Game3 from './pages/Games/Game3/src/App';
 import Game4 from './pages/Games/Game4/src/App';
@@ -17,6 +18,7 @@ function App() {
       <Routes>
     <Route path="/" element={<Login />} />
   <Route path="/task1" element={<Task1 />} />
+
   <Route path="/game2/*" element={<Game2 />} />
   <Route path="/game3/*" element={<Game3 />} />
   <Route path="/game4/*" element={<Game4 />} />

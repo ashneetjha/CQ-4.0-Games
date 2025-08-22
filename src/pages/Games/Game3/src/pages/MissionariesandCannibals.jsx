@@ -49,10 +49,10 @@ export default function WaterJug() {
         <div className="paper-wrap">
           <img className="waterjug-paper" src={newspaperImg} alt="Missionaries & Cannibals — Instructions" />
           <div className="paper-buttons">
-            <Link to="/start" aria-label="Start">
+            <Link to="https://missionariesandcannibals.vercel.app/" aria-label="Start">
               <img className="btn-image" src={startBtn} alt="" />
             </Link>
-            <Link to="/skip" aria-label="Skip">
+            <Link to="/game4" aria-label="Skip">
               <img className="btn-image" src={skipBtn} alt="" />
             </Link>
           </div>

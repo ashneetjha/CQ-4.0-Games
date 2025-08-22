@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import '../index.css'; // Ensure you have the correct CSS file for styles
 const Congratulations = ({ children }) => {
   const [handlesOpen, setHandlesOpen] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
@@ -26,7 +26,7 @@ const Congratulations = ({ children }) => {
       {/* Confetti */}
       <div className="fixed inset-0 z-10 pointer-events-none flex items-center justify-center">
         <img
-          src="/confetti.png"
+          src="src\pages\Congratualtions\public\confetti.png"
           alt="Confetti"
           className={`absolute left-1/2 top-1/2 w-full h-full object-cover transition-all duration-700
             ${showConfetti ? "opacity-100 scale-100 animate-firework" : "opacity-0 scale-0"}`}
@@ -48,7 +48,7 @@ const Congratulations = ({ children }) => {
       <div className="relative flex items-center justify-center mt-30 w-[1240px] h-[2000px]">
         {/* Left Handle */}
         <img
-          src="/left_handle.png"
+          src="src\pages\Congratualtions\public\left_handle.png"
           alt="Left Handle"
           className={`absolute left-1/2 z-30 w-16 h-[500px] mt-190 transition-transform duration-1000 ${
             handlesOpen ? "-translate-x-[700px]" : "-translate-x-1/2"
@@ -57,7 +57,7 @@ const Congratulations = ({ children }) => {
         />
         {/* Right Handle */}
         <img
-          src="/right_handle.png"
+          src="src\pages\Congratualtions\public\right_handle.png"
           alt="Right Handle"
           className={`absolute left-1/2 z-30 w-16 h-[500px] mt-190 transition-transform duration-1000 ${
             handlesOpen ? "translate-x-[620px]" : "translate-x-1/2"
@@ -69,7 +69,7 @@ const Congratulations = ({ children }) => {
         <div
           className="absolute left-1/2 top-0 -translate-x-1/2 z-10 w-[1200px] h-[200px] mt-150 flex items-center justify-center rounded-3xl overflow-hidden"
           style={{
-            backgroundImage: "url('/ContentBackground.png')",
+            backgroundImage: "url('src\pages\Congratualtions\public\ContentBackground.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -79,19 +79,19 @@ const Congratulations = ({ children }) => {
         <div
           className={`relative z-20 w-[98%] max-w-[1200px] h-auto flex items-center justify-center rounded-3xl transition-[clip-path] duration-1000`}
           style={{
-            backgroundImage: "url('/blurbg.png')", // 👈 directly in public
+            backgroundImage: "url('src/pages/Congratualtions/public/blurbg.png')", // 👈 directly in public
             backgroundSize: "cover",
             backgroundPosition: "center",
             clipPath: handlesOpen ? "inset(0% 0% 0% 0%)" : "inset(0% 50% 0% 50%)",
           }}
         >
           <img
-            src="/blurbg.png"
+            src="src/pages/Congratualtions/public/blurbg.png"
             alt="Background"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <img
-            src="/CongoBG.png"
+            src="src\pages\Congratualtions\public\CongoBG.png"
             alt="Congratulations"
             className="relative z-10 w-500 h-100"
           />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // ⬅️ add this
 import './Task1.css';
 
 const bgImage = '/bg.png';
@@ -8,6 +9,7 @@ const walletImage = '/pg.png';
 
 export default function Task1() {
   const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
+  const navigate = useNavigate(); // ⬅️ add this
 
   useEffect(() => {
     if (timeLeft <= 0) return;
@@ -44,7 +46,7 @@ export default function Task1() {
         </div>
       </div>
 
-      {/* Instructions styled like desired image */}
+      {/* Instructions */}
       <div className="task-instructions styled-box">
         <p><span className="highlight">Time</span> is your true adversary in this challenge.</p>
         <ul>
@@ -60,7 +62,12 @@ export default function Task1() {
       </div>
 
       {/* Start button */}
-      <button className="start-button">Start</button>
+      <button
+        className="start-button"
+        onClick={() => navigate('/game2')} // ⬅️ goes to http://localhost:5173/game2 in dev
+      >
+        Start
+      </button>
     </div>
   );
 }
